@@ -3,6 +3,7 @@ import Grid from '@mui/material/Grid'
 import '@components/helpers/Loader/loader.css'
 import Button from '@mui/material/Button'
 import { ISxStyles } from '@interfaces/styles.interface'
+import Box from '@mui/material/Box'
 
 const styles: ISxStyles = {
   loaderContent: {
@@ -26,11 +27,16 @@ const Loader = () => {
   return (
     <Fragment>
       <Grid ref={loaderRef} sx={styles.loaderContent} justifyContent='center' container alignItems='center'>
-        <Grid item justifySelf='center' className='loader quantum-spinner' />
+        <Box className='lds-facebook'>
+          <Box></Box>
+          <Box></Box>
+          <Box></Box>
+        </Box>
       </Grid>
-      <Grid sx={{ position: 'absolute', bottom: '20px', left: '45%' }} justifyContent='center'>
+      <Grid sx={{ position: 'absolute', bottom: '20px', left: '46.5%' }} justifyContent='center'>
         {reloadBtn && (
           <Button
+            color='info'
             onClick={handleReload}
             variant='outlined'
             size='small'

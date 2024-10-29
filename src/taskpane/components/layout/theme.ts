@@ -6,7 +6,7 @@ export enum Colors {
   grey = '#F7F6F6',
   error = '#DC5277',
   iconColor = '#7B8099',
-  main = '#364766',
+  main = '#079854',
   secondary = '#2A7AE4'
 }
 

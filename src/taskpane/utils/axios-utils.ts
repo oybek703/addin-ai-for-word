@@ -37,9 +37,7 @@ function checkAppVersion(response: AxiosResponse): void {
  */
 function checkLeftCreditsAndFreeExecutions(response: AxiosResponse): void {
   try {
-    const leftAiCredits = response?.headers[LOCAL_DATA_KEYS.aiCredits]
     const leftFreeExecutions = response?.headers[LOCAL_DATA_KEYS.freeExecutions]
-    if (leftAiCredits || leftAiCredits === 0) localStorage.setItem(LOCAL_DATA_KEYS.aiCredits, leftAiCredits)
     if (leftFreeExecutions || leftFreeExecutions === 0)
       localStorage.setItem(LOCAL_DATA_KEYS.freeExecutions, leftFreeExecutions)
   } catch (e) {
@@ -85,7 +83,7 @@ axiosInstance.interceptors.request.use(function (config) {
  */
 export const getUserData = async (email: string): Promise<IApiUser | null> => {
   try {
-    const { data } = await axiosInstance.get<IApiUser>('/subscriber', {
+    const { data } = await axiosInstance.get<IApiUser>('/users', {
       params: { email }
     })
     return data
@@ -102,10 +100,9 @@ export const getUserData = async (email: string): Promise<IApiUser | null> => {
  */
 export const upsertMicrosoftUser = async (params: IUpsertMsUser): Promise<IApiUser> => {
   try {
-    const { data } = await axiosInstance.put<IApiUser>('/subscriber', params)
+    const { data } = await axiosInstance.put<IApiUser>('/users', params)
     return data
   } catch (e) {
-    console.log('params[userPrincipalName-data] => ', JSON.stringify(params, null, 2))
     console.error('Error while upserting Microsoft user: ', e)
     throw e
   }

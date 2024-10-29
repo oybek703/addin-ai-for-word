@@ -1,81 +1,42 @@
-/*
-The loaders use CSS custom properties (variables) to control the attributes of the loaders
-*/
-:root {
-  --loader-width: 80px;
-  --loader-height: 80px;
-  --loader-color-primary: #364766;
-  --loader-color-secondary: #7b8099;
-  --line-width: 8px;
-  --animation-duration: 1s;
-  --loader-initial-scale: 0.1;
-}
 
-.loader,
-.loader:before,
-.loader:after {
+.lds-facebook,
+.lds-facebook div {
   box-sizing: border-box;
-  flex-grow: 0;
-  flex-shrink: 0;
 }
-
-/*
-In order to get optimal results, please only change the
-variables above and don't change anything in the actual loader code
-*/
-
-@keyframes momentum {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(-360deg);
-  }
-}
-
-.loader.quantum-spinner {
-  --primary-circle-offset: calc(((var(--loader-width, 100px) * 0.2) / 2) - var(--line-width, 4px));
-  --secondary-circle-offset: calc(
-    ((var(--loader-width, 100px) * 0.4) / 2) - var(--line-width, 4px)
-  ); /*- (var(--line-width,4px) * 2)*/
+.lds-facebook {
+  display: inline-block;
   position: relative;
-  width: var(--loader-width, 100px);
-  height: var(--loader-height, 100px);
-  transform-origin: center center;
-  border-radius: 50%;
-  border: var(--line-width, 4px) solid rgba(0, 0, 0, 0);
-  border-top-color: var(--loader-color-primary, #33f);
-  animation: momentum var(--animation-duration, 1s) linear infinite;
+  width: 80px;
+  height: 80px;
+}
+.lds-facebook div {
+  display: inline-block;
+  position: absolute;
+  left: 8px;
+  width: 16px;
+  background: #0288d1;
+  animation: lds-facebook 1.2s cubic-bezier(0, 0.5, 0.5, 1) infinite;
+}
+.lds-facebook div:nth-child(1) {
+  left: 8px;
+  animation-delay: -0.24s;
+}
+.lds-facebook div:nth-child(2) {
+  left: 32px;
+  animation-delay: -0.12s;
+}
+.lds-facebook div:nth-child(3) {
+  left: 56px;
+  animation-delay: 0s;
+}
+@keyframes lds-facebook {
+  0% {
+    top: 8px;
+    height: 64px;
+  }
+  50%, 100% {
+    top: 24px;
+    height: 32px;
+  }
 }
 
-.quantum-spinner:before {
-  content: '';
-  position: absolute;
-  transform-origin: center center;
-  top: var(--primary-circle-offset, 10px);
-  left: var(--primary-circle-offset, 10px);
-  width: calc(var(--loader-width, 100px) * 0.8);
-  height: calc(var(--loader-height, 100px) * 0.8);
-  border-radius: 50%;
-  border: var(--line-width, 4px) solid rgba(0, 0, 0, 0);
-  border-top-color: var(--loader-color-primary, #33f);
-  opacity: 0.7;
-  filter: hue-rotate(3 eg);
-  animation: momentum calc(var(--animation-duration, 1s) * 2) linear infinite;
-}
-
-.quantum-spinner:after {
-  content: '';
-  position: absolute;
-  top: var(--secondary-circle-offset, 20px);
-  left: var(--secondary-circle-offset, 20px);
-  width: calc(var(--loader-width, 100px) * 0.6);
-  height: calc(var(--loader-height, 100px) * 0.6);
-  border-radius: 50%;
-  transform-origin: center center;
-  border: var(--line-width, 4px) solid rgba(0, 0, 0, 0);
-  border-top-color: var(--loader-color-primary, #33f);
-  opacity: 0.3;
-  filter: hue-rotate(6 eg);
-  animation: momentum var(--animation-duration, 1s) linear infinite;
-}
