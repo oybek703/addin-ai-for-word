@@ -1,0 +1,61 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background-color: white;
+  max-height: 100vh;
+  overflow: hidden;
+  height: 100vh;
+}
+
+#container {
+  height: 100vh; /* for shorter content */
+  display: grid;
+  min-width: 320px;
+  width: 100%;
+  max-width: 350px;
+  margin: 0 auto;
+  grid-template-columns: auto 1fr;
+  grid-template-areas: 'aside main';
+  background-color: #fafafa;
+  gap: 0;
+}
+
+aside {
+  grid-area: aside;
+  background-color: #f7f6f6;
+  padding: 10px 5px;
+}
+
+main {
+  grid-area: main;
+  overflow: auto;
+  height: 100vh;
+  place-items: center;
+  display: flex;
+}
+
+main > section {
+  width: 100%;
+}
+
+.MuiDialog-container > .MuiDialog-paper {
+  width: 100%;
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
+.MuiDialog-paper {
+  margin-left: 10px !important;
+  margin-right: 10px !important;
+}
+
+#content {
+  white-space: pre-wrap; /* This ensures that lines wrap */
+  word-wrap: break-word; /* This allows long words to break */
+}
+
+.opacity-10 {
+  opacity: 0.2;
+}
+

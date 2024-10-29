@@ -1,0 +1,18 @@
+# Node modules
+node_modules
+
+# Build files
+dist
+.vscode/*
+
+# Env variables
+.env
+.development.env
+.production.env
+.live-production.env
+# IDE files
+.idea
+
+# Temp files
+data
+

@@ -1,0 +1,23 @@
+on:
+ push:
+   branches:
+     - dev
+ workflow_dispatch:
+
+jobs:
+ run_pull:
+   name: run pull
+   runs-on: ubuntu-latest
+
+   steps:
+   - name: install ssh keys
+     # check this thread to understand why its needed:
+     # https://stackoverflow.com/a/70447517
+     run: |
+       install -m 600 -D /dev/null ~/.ssh/id_rsa
+       echo "${{ secrets.EC2_SSH_KEY }}" > ~/.ssh/id_rsa
+       ssh-keyscan -H 51.21.2.127 > ~/.ssh/known_hosts
+   - name: connect and pull
+     run: ssh ubuntu@51.21.2.127 "cd /var/www/word-addin.shhapps.com/addin-ai-for-word && sudo git checkout . && sudo git checkout dev && sudo git pull origin dev && sudo bash deploy.sh prod && exit"
+   - name: cleanup
+     run: rm -rf ~/.ssh
